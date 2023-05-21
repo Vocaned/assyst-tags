@@ -1,0 +1,50 @@
+{js:
+const SERVICES = \{
+    discord: "https://discordstatus.com",
+    twitter: "https://api.twitterstat.us",
+    reddit: "https://reddit.statuspage.io",
+    cloudflare: "https://www.cloudflarestatus.com",
+    dropbox: "https://status.dropbox.com",
+    github: "https://www.githubstatus.com",
+    medium: "https://medium.statuspage.io",
+    epic: "https://status.epicgames.com",
+    glitch: "https://status.glitch.com"
+\};
+const capitalize = s => s && s[0].toUpperCase() + s.slice(1);
+
+(async () => \{
+    let service = "{tryarg:0}";
+    if (!service) service = "discord";
+{ignore:
+    if (!Object.keys(SERVICES).includes(service.toLowerCase())) return `Invalid statuspage. List of supported services: ${Object.keys(SERVICES).map(x => capitalize(x)).join(", ")}`;
+
+    let res = await fetch(SERVICES[service] + "/index.json");
+    let j = await res.json();
+
+    let lines = [
+        `**${j.page.name} - ${j.status.description}**`
+    ];
+
+    for (let component of j.components) {
+        if (component.status === "operational") continue;
+        lines.push(`${component.name}: ${capitalize(component.status.replace("_", " "))}`);
+    }
+
+    lines.push("");
+
+    for (let incident of j.incidents) {
+        if (incident.status === "completed" || incident.status === "resolved" || incident.status === "scheduled") continue;
+
+        let impact = "";
+        if (incident.impact && incident.impact != "none") impact = `${capitalize(incident.impact)}: `;
+
+        lines.push(`\`${impact}${incident.name}\`\nStarted: <t:${Math.floor(new Date(incident.started_at).getTime() / 1000)}:R>\nLast Update: <t:${Math.floor(new Date(incident.updated_at).getTime() / 1000)}:R>\nFollow this incident: <${incident.shortlink}>`);
+        lines.push("");
+    }
+
+    lines.push(`More info: <${SERVICES[service]}>`)
+
+    return lines.join("\n");
+}
+\})();
+}

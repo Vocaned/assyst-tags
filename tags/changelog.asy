@@ -1,5 +1,5 @@
 {if:{tryarg:0}|~||Usage: -t changelog [platform] (version) (locale)
-Valid versions can be obtained by running the command without a version set.
+List of changelogs can be obtained by running the command without a version set.
 Locale defaults to en-US.
 
 Valid platforms:
@@ -15,7 +15,7 @@ Valid platforms:
     let v = Object.values(ids).map(x => x.min_version.toString());
     let id;
     if (v.length > 1) {
-        if (!v.includes(version)) return `Valid versions for platform ${platform}: ${v.join(", ")}`;
+        if (!v.includes(version)) return `Valid changelogs for platform ${platform}: ${v.join(", ")}`;
 
         id = Object.entries(ids).find(x => x[1].min_version.toString() == version)[0];
     } else {
