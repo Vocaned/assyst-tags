@@ -26,7 +26,7 @@ Valid platforms:
     let url = `https://cdn.discordapp.com/changelogs/${platform}/${id}/${locale}.json`
     let reqc = await fetch(url);
     let changelog = await reqc.json()
-    let out = url + "\`\`\`" + changelog.content;
+    let out = url + " \`\`\`" + changelog.content;
 
     if (out.length > 1980) out = out.substring(0, 1970) + "... (continues)";
     return out + "\`\`\`";

@@ -8,7 +8,8 @@ const SERVICES = \{
     github: "https://www.githubstatus.com",
     medium: "https://medium.statuspage.io",
     epic: "https://status.epicgames.com",
-    glitch: "https://status.glitch.com"
+    glitch: "https://status.glitch.com",
+    openai: "https://status.openai.com"
 \};
 const capitalize = s => s && s[0].toUpperCase() + s.slice(1);
 
