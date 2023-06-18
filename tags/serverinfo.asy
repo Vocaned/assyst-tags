@@ -1,4 +1,5 @@
-{if:{tryarg:0}|=||Usage: -t serverinfo [space separated list of server IDs, max 5 at a time]|
+{if:{tryarg:0}|=||Usage: -t serverinfo <ids>
+ids is a list of a maximum of 5 space separated server IDs.|
     {if:{tryarg:5}|=||{js:
         let res = {download:https://w.fam.rip/a/serverinfo?servers={args}};
         {ignore:

@@ -1,4 +1,4 @@
-{if:{tryarg:0}|~||Usage: -t changelog [platform] (version) (locale)
+{if:{tryarg:0}|=||Usage: -t changelog <platform> [version] [locale]
 List of changelogs can be obtained by running the command without a version set.
 Locale defaults to en-US.
 

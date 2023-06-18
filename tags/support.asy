@@ -1,4 +1,4 @@
-{if:{tryarg:0}|~||Usage: -t support (-dev) [search query]
+{if:{tryarg:0}|=||Usage: -t support [-dev] <search query>
 Finds Discord Support articles matching a provided search query
 Adding a `-dev` flag searches for Developer Support articles instead.
 |{js:
