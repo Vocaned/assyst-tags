@@ -1,6 +1,7 @@
 {if:{tryarg:0}|=||Usage: -t support [-dev] <search query>
 Finds Discord Support articles matching a provided search query.
-Adding a `-dev` flag searches for Developer Support articles instead.
+Adding a `-dev` flag searches for Developer Support articles.
+Adding a `-creators` flag searches for Creator Support articles
 |{js:
 (async () => \{
     let search = "{args}".toLowerCase();
@@ -9,6 +10,10 @@ Adding a `-dev` flag searches for Developer Support articles instead.
     if (search.includes("-dev")) {
         url = "discorddevs";
         search = search.replace("-dev", "").trim()
+    }
+    if (search.includes("-creators")) {
+        url = "discordcreatorsupport";
+        search = search.replace("-creators", "").trim()
     }
 
     let req = await fetch(`https://${url}.zendesk.com/api/v2/help_center/articles/search?query=${search}`);
