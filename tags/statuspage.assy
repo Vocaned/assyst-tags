@@ -9,7 +9,8 @@ const SERVICES = \{
     medium: "https://medium.statuspage.io",
     epic: "https://status.epicgames.com",
     glitch: "https://status.glitch.com",
-    openai: "https://status.openai.com"
+    openai: "https://status.openai.com",
+    proton: "https://status.proton.me"
 \};
 const capitalize = s => s && s[0].toUpperCase() + s.slice(1);
 
@@ -44,7 +45,6 @@ const capitalize = s => s && s[0].toUpperCase() + s.slice(1);
     }
 
     lines.push(`More info: <${SERVICES[service]}>`)
-
     return lines.join("\n");
 }
 \})();
